@@ -3,7 +3,7 @@ pipeline {
     agent {label 'vinod'}
 
     stages {
-       stage("HELLO shared libraries") {
+       stage("HELLO shared libraries NEW") {
           steps {
               print("HELLO DONE RAM")
           }  
