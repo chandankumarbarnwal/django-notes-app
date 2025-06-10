@@ -1,29 +1,50 @@
-@Library('Shared')_
-pipeline{
-    agent { label 'dev-server'}
-    
-    stages{
-        stage("Code clone"){
-            steps{
-                sh "whoami"
-            clone("https://github.com/LondheShubham153/django-notes-app.git","main")
-            }
+@Library("Shared") _
+pipeline {
+    agent {label 'vinod'}
+
+    stages {
+       stage("HELLO shared libraries") {
+          steps {
+              print("HELLO DONE RAM")
+          }  
         }
-        stage("Code Build"){
-            steps{
-            dockerbuild("notes-app","latest")
-            }
+        
+        stage("HELLO calling ") {
+          steps {
+              script {
+                    print("HELLO DONE SITA")
+              }
+           }
         }
-        stage("Push to DockerHub"){
-            steps{
-                dockerpush("dockerHubCreds","notes-app","latest")
-            }
+        stage("PRINT calling shared libraries") {
+          steps {
+              print("PRINT DONE RAM")
+          }  
         }
-        stage("Deploy"){
-            steps{
-                deploy()
+        
+        stage("PRINT calling ") {
+          steps {
+              script {
+                    print("DONE SITA")
+              }
+           }
+        }
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
             }
         }
         
+        stage('create folder') {
+            steps {
+                sh "mkdir -p devops"
+            }
+        }
+        
+        stage('Bye') {
+            steps {
+                echo 'Bye my friends'
+            }
+        }
     }
 }
